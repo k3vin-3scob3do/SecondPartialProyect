@@ -2,63 +2,57 @@
 #include <cctype>
 #include <cstring>
 #include <vector>
-#include "myCharacter.h"
-#include "myPowers.h"
 #include "myMenus.h"
+#include "Monsters.h"
 #include <windows.h>
 #include <stdlib.h>
 #include <string.h>
 #include <fstream>
+#include <pthread.h>
 using namespace std;
 
-void menuCharacters(){
-    int sel = 0;
-    switch(sel){
-        case 1:
-
-        break;
-
-        case 2:
-
-        break;
-
-        case 3:
-
-        break;
-
-    }
-}
+Menu m;
 
 void menu(){
-    int sel;
-    while(sel != 3){ 
-        
-        switch(sel){
-            case 1: //Iniciar Juego
-            
-            break;
+    string p;
+    system("cls");
+    m.mainMenu();
+    switch(m.opc()){
+        case 49: //Iniciar Juego
+        cout<<1;
+        return menu();
 
-            case 2: //Seleccionar Personaje
-            menuCharacters();
+        case 50: //Seleccionar Personaje
+        cout<<2;
+        return menu();
 
-            break;
+        case 51: //Salir del juego
+        cout<<3;
+        break;
 
-            case 3: //Salir del juego
-
-            break;
-
-            default:
-            sel = 3;
-            break;
-        }
+        default:
+        cout<<p<<endl;
+        break;
     }
+    cout<<p<<endl;
 }
 
         
 int main(){
+    
     system("cls");
-    Menu m;
     m.title();
-    m.mainMenu();
     menu();
+    
+    
+    
+   /*
+    gMonsters monsters;
+    map<string, Character> gM = monsters.getMap();
+    map<string, Character>::iterator it = gM.find("Fire-Storm");
+    pair<string, Character> age = *it;
+    cout<<age.first<<" "<<age.second.getAttempts();
+    */
 }   
+   
+

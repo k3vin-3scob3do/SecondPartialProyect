@@ -2,6 +2,7 @@
 #include <conio.h>
 using namespace std;
 #define ENTER 13
+//#define key1 
 
 int main(){
     int teclaE, tecla;
@@ -12,6 +13,6 @@ int main(){
             teclaE = getch();  
         }
     }
-    cout<<tecla<<endl;
+    cout<<tecla;
 }
         
