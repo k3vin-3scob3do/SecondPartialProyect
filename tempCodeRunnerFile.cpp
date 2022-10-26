@@ -1,2 +1,1 @@
-
-    promedio = suma / n;
+        cout<<auxMon.first;

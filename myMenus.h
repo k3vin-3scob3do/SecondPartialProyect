@@ -91,7 +91,6 @@ class Menu{
             int teclaE, tecla;
             string sel;
             system("cls");
-            mainChar();
             teclaE = getch();
             while(teclaE != 13){
                 if(teclaE != 13){

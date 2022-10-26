@@ -12,29 +12,30 @@
 using namespace std;
 
 Menu m;
+string p = "Fire-Snake";
+gMonsters gM;
 
 void menu(){
-    string p;
     system("cls");
     m.mainMenu();
     switch(m.opc()){
         case 49: //Iniciar Juego
-        cout<<1;
-        return menu();
-
+        {
+            
+        }
         case 50: //Seleccionar Personaje
-        cout<<2;
+        {
+            p = m.menuCharacters();
+            cout<<p;
+            Sleep(2000);
+        }
         return menu();
 
         case 51: //Salir del juego
-        cout<<3;
+        
         break;
 
-        default:
-        cout<<p<<endl;
-        break;
     }
-    cout<<p<<endl;
 }
 
         

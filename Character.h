@@ -5,14 +5,12 @@ using namespace std;
 
 class Character{
     private:
-        string name;
         int life;
         vector<Power> powers;
         int attempts = 5;
     
     public:
-        Character(string name, int life, vector<Power> powers) : name(name), life(life), powers(powers){}
-        string getName(){return name;}
+        Character(int life, vector<Power> powers) : life(life), powers(powers){}
         int getLife(){return life;}
         int getAttempts(){return attempts;}
         vector<Power> getPowers(){return powers;}
