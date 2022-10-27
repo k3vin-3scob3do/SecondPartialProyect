@@ -14,6 +14,10 @@ class Power{
         string getType(){return type;}
         int getDamage(){return damage;}
         int getQuantity(){return quantity;}
+        string getName(){return name;}
+        void setQuantity(int quantity){
+            this->quantity = quantity;
+        }
     
 };
 
