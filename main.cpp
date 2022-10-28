@@ -51,11 +51,13 @@ void runGame(){
         pthread_join(player, &winnerP);
         pthread_join(cpu, &winnerC);
         if((bool)winnerP == true){
-            levels.setLevel(levels.getLevel() + 1);
+            levels.setLevel();
         }else if((bool)winnerC == true){
-            auxMon.second.setAttempts(auxMon.second.getAttempts() - 1);
+            cout<<"ganaste";
+            levels.changeAttempts();
+            cout<<levels.getAttemptsC();
         }
-                  
+        Sleep(3000);          
 }
 
 
@@ -66,9 +68,14 @@ void menu(){
     switch(m.opc()){
         case 49: //Iniciar Juego
         {
-            
-            runGame();
-            return menu();
+            while(levels.getAttemptsC() > 0){
+                runGame();
+                levels.restartSuccess();
+                //levels.restart();
+                if(levels.getAttemptsC() == 5){
+                    return menu();
+                }
+            }
         }
         case 50: //Seleccionar Personaje
         {

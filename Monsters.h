@@ -40,7 +40,10 @@ class gMonsters{
             vP.push_back(Power("Ultimate", "Thunderbolt", 20, 5));
             gM.insert(make_pair("Thunder-Eagle", Character(500, vP)));
             vP.clear();
-        
+        }
+
+        void restart(){
+
         }
 
         map<string, Character> getMap(){
@@ -106,8 +109,8 @@ class Levels{
     public:
         Levels(pair<string, Character> monster, map<string, Character> bmonsters): monster(monster), bmonsters(bmonsters){}
         
-        void setLevel(int level){
-            this->level = level;
+        void setLevel(){
+            level = level + 1;
         }
 
         void setMonster(pair<string, Character> monster){
@@ -121,6 +124,7 @@ class Levels{
         int getSuccess(){
             return success;
         }
+
 
         void openGame(){
             string text;
@@ -138,7 +142,7 @@ class Levels{
             if(level == 1) it = bmonsters.find("Bad-Skull");
             else if(level == 2) it = bmonsters.find("Bat-Storm");
             else if(level == 3) it = bmonsters.find("Black-Ghost");
-            else if(level == 2) it = bmonsters.find("Cronos");
+            else if(level == 4) it = bmonsters.find("Cronos");
             pair<string, Character> auxMon = *it;
 
             fileName = auxMon.first + ".txt";
@@ -155,7 +159,7 @@ class Levels{
 
         void hearts(){
             system("cls");
-            switch(monster.second.getAttempts()){
+            switch(getAttemptsC()){
                 case 0:
                 cout<<"\n\n\n\n\n\n\n\n\n\n";
                 break;
@@ -248,6 +252,10 @@ class Levels{
             return it;
         }
         
+        void restartSuccess(){
+            success = 0;
+        }
+
         void compareLife(){
             int bl = whatLevel()->second.getLife();
             if(monster.second.getLife() <= 0) success = 1;
@@ -266,7 +274,7 @@ class Levels{
                     case 49:{ //Health
                         if(monster.second.getQuantityC(0) > 0){
                            monster.second.setQuantityC(monster.second.getQuantityC(0) - 1, 0);
-                           cout<<endl<<monster.first<<" ha utilizado "<<monster.second.getNameC(0);
+                           cout<<endl<<monster.first<<" has user "<<monster.second.getNameC(0);
                            monster.second.setLife(monster.second.getLife() + monster.second.getDamageC(0));
                             
                         }else{
@@ -282,7 +290,7 @@ class Levels{
                     case 50:{//Attack
                         if(monster.second.getQuantityC(1) > 0){
                             monster.second.setQuantityC(monster.second.getQuantityC(1) - 1, 1);
-                            cout<<endl<<monster.first<<" ha utilizado "<<monster.second.getNameC(1);
+                            cout<<endl<<monster.first<<" has user "<<monster.second.getNameC(1);
                             whatLevel()->second.setLife(whatLevel()->second.getLife() - monster.second.getDamageC(1));
                         }else{
                             cout<<endl<<"Out of Powers";
@@ -296,7 +304,7 @@ class Levels{
                     case 51:{//Recharge
                         if(monster.second.getQuantityC(2) > 0){
                             monster.second.setQuantityC(monster.second.getQuantityC(2) - 1, 2);
-                            cout<<endl<<monster.first<<" ha utilizado "<<monster.second.getNameC(2);
+                            cout<<endl<<monster.first<<" has user "<<monster.second.getNameC(2);
                             monster.second.setQuantityC(monster.second.getQuantityC(1) + 1, 1);
                         }else{
                             cout<<endl<<"Out of Powers";
@@ -310,7 +318,7 @@ class Levels{
                     case 52:{//Ultimate
                         if(monster.second.getQuantityC(3) > 0){
                             monster.second.setQuantityC(monster.second.getQuantityC(3) - 1, 3); 
-                            cout<<endl<<monster.first<<" ha utilizado "<<monster.second.getNameC(3);
+                            cout<<endl<<monster.first<<" has user "<<monster.second.getNameC(3);
                             whatLevel()->second.setLife(whatLevel()->second.getLife() - monster.second.getDamageC(3));
                         }else{
                             cout<<endl<<"Out of Powers";
@@ -402,5 +410,13 @@ class Levels{
                 }
                 isAction = true;
             }
+        }
+
+        int getAttemptsC(){
+            return monster.second.getAttempts();
+        }
+
+        void changeAttempts(){
+            monster.second.setAttempts(monster.second.getAttempts() - 1);
         }       
 };
